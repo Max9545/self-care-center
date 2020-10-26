@@ -34,15 +34,31 @@ var mantra = document.querySelector('#mantra');
 var typeBox = document.querySelector('.type-box');
 var messagePad = document.querySelector('.message-pad');
 var radios = document.getElementsByName('care-choice');
-var sayDisplay = document.querySelector('.say-display')
+var sayDisplay = document.querySelector('.say-display');
 var buddha = document.querySelector('.buddha')
 var clearOut = document.querySelector('.clear')
-
+var favSaying = document.querySelector('.favorite');
+var displayedSaying = document.querySelector('.displayed-saying');
+var favGallery = document.querySelector('.fav-gallery');
+var viewGallery = document.querySelector('.view-favorites');
+var mainPage = document.querySelector('.main-page');
+var backToMain = document.querySelector('#back-to-home');
+var homeButtonSpace = document.querySelector('.home-button-space');
+var favoritesArray = [];
+sayingToSave = '';
 // var buddhaBounce = new AnimationEvent('animationstart ', { animationName: slide })
 
 typeBox.addEventListener('submit', insertSaying);
 
 clearOut.addEventListener('click', clearBox);
+
+sayDisplay.addEventListener('click', addToFavorites);
+
+viewGallery.addEventListener('click', goToGallery);
+
+// favGallery.addEventListener('click', goHome);
+
+favGallery.addEventListener('click', deleteSaying);
 
 function getRandomIndex(array) {
     return Math.floor(Math.random() * array.length);
@@ -55,13 +71,22 @@ function insertSaying() {
     for (var i = 0; i < radios.length; i++) {
         if (radios[i].checked === true) {
             if (radios[i].value == 'affirmations') {
-                sayDisplay.innerText = affirmations[getRandomIndex(affirmations)]
+                sayingToSave = makeSaying(affirmations);
             } else if (radios[i].value == 'mantras') {
-                sayDisplay.innerText = mantras[getRandomIndex(mantras)]
+                sayingToSave = makeSaying(mantras);
             }
         }
     }
 };
+
+function makeSaying(type) {
+    newSaying = new Saying(`${type[getRandomIndex(type)]}`, type);
+    sayDisplay.innerHTML = `<p class="displayed-saying">${newSaying.quote}</p><button class="favorite" type="button">Fav Me!</button>`;
+    return newSaying;
+}
+
+
+
 
 function clearBox() {
     sayDisplay.innerText = '';
@@ -76,3 +101,61 @@ function clearBox() {
 //         clearOut.disabled = true;
 //     }
 // };
+
+function addToFavorites(event) {
+    if (event.target.matches('.favorite ') && (!favoritesArray.includes(sayingToSave))) {
+        favoritesArray.push(sayingToSave);
+    }
+};
+
+function deleteSaying(event) {
+    console.log(event.target);
+    if (event.target.classList.contains('delete-saying')) {
+        for (var i = 0; i < favoritesArray.length; i++) {
+            if (event.target.id == favoritesArray[i].id) {
+                favoritesArray.splice(i, 1);
+            }
+        }
+        favGallery.innerHTML = '<div class="home-button-space"><button id="back-to-home" type="button">Back To Main</button></div>';
+        goToGallery();
+    } else if (event.target.id === 'back-to-home') {
+        goHome();
+    }
+}
+
+function goToGallery() {
+    builtGallery = '';
+    favGallery.innerHTML = '<div class="home-button-space"><button id="back-to-home" type="button">Back To Main</button></div>';
+    for (var i = 0; i < favoritesArray.length; i++) {
+        var quoteToDisplay = `<p class="saved-sayings">${favoritesArray[i].quote}</p><button class="delete-saying" type="button" id="${favoritesArray[i].id}"
+        ">Remove (For Now)</button>`;
+        builtGallery += quoteToDisplay;
+    };
+    favGallery.insertAdjacentHTML('afterbegin', builtGallery);
+    hide(mainPage);
+    show(favGallery);
+}
+
+function goHome() {
+    // if (event.target.id === 'back-to-home') {
+    show(mainPage);
+    hide(favGallery);
+    // }
+
+};
+
+function hide(thingToHide) {
+    thingToHide.classList.add('hidden');
+};
+
+function show(thingToShow) {
+    thingToShow.classList.remove('hidden');
+};
+// function createListener() {
+//     if (favSaying) {
+//         favSaying.addEventListener('click', addToFavorites)
+//         console.log("HEY");
+//     } else {
+//         console.log("NO");
+//     }
+// }

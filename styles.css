@@ -12,6 +12,10 @@ html {
     height: 100%;
 }
 
+h1 {
+    margin-bottom: 15%;
+}
+
 h1,
 h2 {
     font-family: 'Quicksand', sans-serif;
@@ -25,6 +29,11 @@ h2 {
 }
 
 main {
+    display: flex;
+    justify-content: center;
+}
+
+.main-page {
     width: 100%;
     height: 30em;
     display: flex;
@@ -35,9 +44,9 @@ main {
 .type-box {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-evenly;
     width: 50%;
-    height: 8em;
+    height: 20em;
     border-radius: 10px;
     background-color: #ffffff;
     align-self: center;
@@ -52,25 +61,35 @@ main {
     width: 40%;
     align-self: center;
     border-radius: 5px;
+    margin-bottom: 5%;
 }
 
 .radio-pad {
     display: flex;
+    height: 4em;
     justify-content: space-around;
     font-family: 'Quicksand', sans-serif;
     font-style: italic;
+    padding: 5%;
 }
 
 .care-choice {
     margin-right: 5 px;
 }
 
+.displayed-saying {
+    padding: 5%;
+    width: 100%;
+    font-size: 1.5em;
+}
+
 .message-pad {
     background-color: #ffffff;
     width: 80%;
-    height: 14em;
+    height: 8em;
     align-self: center;
-    margin-top: 10%;
+    margin-top: 5%;
+    padding: 5em;
     border-radius: 10px;
     display: flex;
     justify-content: center;
@@ -81,11 +100,45 @@ main {
 }
 
 .say-display {
+    display: flex;
     font-family: 'Quicksand', sans-serif;
-    padding-top: 10%;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .clear {
+    width: 30%;
+    font-family: 'Quicksand', sans-serif;
+    align-self: center;
+    background-color: #134d71;
+    color: #ffffff;
+    border-radius: 70%;
+    margin-top: 5%;
+}
+
+.favorite {
+    display: flex;
+    align-self: center;
+    background-color: #134d71;
+    color: #ffffff;
+    border-radius: 70%;
+    margin-top: 5%;
+}
+
+.fav-gallery {
+    width: 40%;
+    height: auto;
+    display: flex;
+    font-family: 'Quicksand', sans-serif;
+    padding: 5% 10% 5% 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #ffffff;
+    border-radius: 10px;
+}
+
+.view-favorites {
     width: 30%;
     height: 10%;
     font-family: 'Quicksand', sans-serif;
@@ -94,6 +147,38 @@ main {
     color: #ffffff;
     border-radius: 70%;
     margin-top: 5%;
+}
+
+.saved-sayings {
+    font-family: 'Quicksand', sans-serif;
+    border: 40px solid #134d71;
+    border-style: dashed dashed ridge none;
+    padding: 3%;
+}
+
+#back-to-home {
+    background-color: #134d71;
+    color: #ffffff;
+    font-family: 'Quicksand', sans-serif;
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+}
+
+.delete-saying {
+    background-color: #134d71;
+    color: #ffffff;
+    font-family: 'Quicksand', sans-serif;
+    width: 60%;
+    height: 20%;
+    border-radius: 5px;
+    page-break-after: 1%;
+}
+
+.home-button-space {
+    display: flex;
+    justify-content: center;
 }
 
 .buddha {
