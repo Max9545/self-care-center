@@ -58,6 +58,7 @@ viewGallery.addEventListener('click', goToGallery);
 
 favGallery.addEventListener('click', deleteSaying);
 
+
 function getRandomIndex(array) {
     return Math.floor(Math.random() * array.length);
 }
@@ -78,7 +79,7 @@ function insertSaying() {
 };
 
 function makeSaying(type) {
-    newSaying = new Saying(`${type[getRandomIndex(type)]}`, type);
+    newSaying = new Saying(`${type[getRandomIndex(type)]}`);
     sayDisplay.innerHTML = `<p class="displayed-saying">${newSaying.quote}</p><button class="favorite" type="button">Fav Me!</button>`;
     return newSaying;
 }
@@ -92,8 +93,8 @@ function clearBox() {
 function addToFavorites(event) {
     if (event.target.matches('.favorite ') && (!favoritesArray.includes(sayingToSave))) {
         favoritesArray.push(sayingToSave);
-        var stringifiedSaying = JSON.stringify(sayingToSave);
-        localStorage.setItem('storedSaying', stringifiedSaying)
+        var stringifiedSayingsArray = JSON.stringify(favoritesArray);
+        localStorage.setItem('storedSayings', stringifiedSayingsArray)
     }
 };
 
@@ -113,6 +114,9 @@ function deleteSaying(event) {
 }
 
 function goToGallery() {
+    var retrievedSayings = localStorage.getItem('storedSayings');
+    var parsedSayings = JSON.parse(retrievedSayings);
+    favoritesArray.concat(parsedSayings);
     builtGallery = '';
     favGallery.innerHTML = '<div class="home-button-space"><button id="back-to-home" type="button">Back To Main</button></div>';
     for (var i = 0; i < favoritesArray.length; i++) {
@@ -124,6 +128,7 @@ function goToGallery() {
     hide(mainPage);
     show(favGallery);
 };
+
 
 function goHome() {
     show(mainPage);
