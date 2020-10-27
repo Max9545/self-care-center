@@ -164,6 +164,7 @@ main {
     display: flex;
     justify-content: center;
     margin-top: 5%;
+    border-radius: 5px;
 }
 
 .delete-saying {
@@ -188,9 +189,10 @@ main {
     padding: 10px;
 }
 
-.buddha-animation {
+
+/* .buddha-animation {
     animation: slide 3s ease-in-out 2 alternate none;
-}
+} */
 
 @keyframes slide {
     frome {
