@@ -4,4 +4,4 @@ class Saying {
         this.quote = quote;
         this.type = type;
     }
-}
+};

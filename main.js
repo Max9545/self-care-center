@@ -56,8 +56,6 @@ sayDisplay.addEventListener('click', addToFavorites);
 
 viewGallery.addEventListener('click', goToGallery);
 
-// favGallery.addEventListener('click', goHome);
-
 favGallery.addEventListener('click', deleteSaying);
 
 function getRandomIndex(array) {
@@ -85,26 +83,17 @@ function makeSaying(type) {
     return newSaying;
 }
 
-
-
-
 function clearBox() {
     sayDisplay.innerText = '';
     buddha.style.display = 'initial';
     clearOut.disabled = true;
 };
 
-// function disableButton() {
-//     if (event.target.checked) {
-//         clearOut.disabled = false;
-//     } else {
-//         clearOut.disabled = true;
-//     }
-// };
-
 function addToFavorites(event) {
     if (event.target.matches('.favorite ') && (!favoritesArray.includes(sayingToSave))) {
         favoritesArray.push(sayingToSave);
+        var stringifiedSaying = JSON.stringify(sayingToSave);
+        localStorage.setItem('storedSaying', stringifiedSaying)
     }
 };
 
@@ -134,14 +123,11 @@ function goToGallery() {
     favGallery.insertAdjacentHTML('afterbegin', builtGallery);
     hide(mainPage);
     show(favGallery);
-}
+};
 
 function goHome() {
-    // if (event.target.id === 'back-to-home') {
     show(mainPage);
     hide(favGallery);
-    // }
-
 };
 
 function hide(thingToHide) {
@@ -151,11 +137,3 @@ function hide(thingToHide) {
 function show(thingToShow) {
     thingToShow.classList.remove('hidden');
 };
-// function createListener() {
-//     if (favSaying) {
-//         favSaying.addEventListener('click', addToFavorites)
-//         console.log("HEY");
-//     } else {
-//         console.log("NO");
-//     }
-// }
