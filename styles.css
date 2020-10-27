@@ -164,11 +164,12 @@ main {
     display: flex;
     justify-content: center;
     margin-top: 5%;
+    border-radius: 5px;
 }
 
 .delete-saying {
-    background-color: #134d71;
-    color: #ffffff;
+    background-color: #a50b41;
+    color: rgb(220, 252, 13);
     font-family: 'Quicksand', sans-serif;
     width: 60%;
     height: 20%;
@@ -186,15 +187,18 @@ main {
     height: 10em;
     align-self: center;
     padding: 10px;
-    /* animation: slide 3s ease-in-out 2 alternate none; */
 }
 
 
-/* @keyframes slide {
+/* .buddha-animation {
+    animation: slide 3s ease-in-out 2 alternate none;
+} */
+
+@keyframes slide {
     frome {
         transform: translateX(0%);
     }
     to {
         transform: translateX(100%);
     }
-} */
+}
